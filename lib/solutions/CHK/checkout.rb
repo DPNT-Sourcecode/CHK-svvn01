@@ -33,17 +33,23 @@ class Checkout
     @order_after_specials = order_summary
     @running_total = 0
     order_summary.each do |item, quantity|
-      sum_items(item, quantity)
+      add_special_items(item, quantity)
       calc_remainder(item, quantity)
     end
     @running_total
   end
 
-  def sum_special_items(item, quantity)
+  def sum_normals
+    @order_after_specials.each do |item, quantity|
+      add_normal_items(item, quantity)
+    end
+  end
+
+  def add_special_items(item, quantity)
     @running_total += quant_specials(item, quantity) * SPECIALS_PRICES[item] if SPECIALS_PRICES.key?(item)
   end
 
-  def sum_normal_items(item, quantity)
+  def add_normal_items(item, quantity)
     @running_total += @order_after_specials[item] * STOCK_PRICES[item]
   end
 
@@ -74,5 +80,6 @@ class Checkout
   # end
 
 end
+
 
 
