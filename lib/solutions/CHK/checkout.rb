@@ -6,6 +6,9 @@ class Checkout
   SPECIALS_PRICES = { A: 130 , B: 45 }
 
   def checkout(skus)
+  p summarise_order(skus)
+  p sum_specials(summarise_order(skus))
+  p sum_normals(sum_specials(summarise_order(skus)))
     sum_normals(sum_specials(summarise_order(skus)))
   end
 
@@ -25,7 +28,7 @@ class Checkout
       add_special_items(item, quantity)
       calc_remainder(item, quantity)
     end
-    order_after_specials 
+    order_after_specials
   end
 
   def sum_normals(order_after_specials)
@@ -38,8 +41,8 @@ class Checkout
     @running_total += quant_specials(item, quantity) * SPECIALS_PRICES[item] if SPECIALS_PRICES.key?(item)
   end
 
-  def add_normal_items(item, quantity)
-    @running_total += @order_after_specials[item] * STOCK_PRICES[item]
+  def add_normal_items(order_after_specials, item, quantity)
+    @running_total += order_after_specials[item] * STOCK_PRICES[item]
   end
 
   def calc_remainder(item, quantity)
@@ -51,6 +54,7 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 
