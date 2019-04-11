@@ -21,12 +21,13 @@ class Checkout
   def on_special(skus)
     skus.each_char do |item|
       SPECIALS_LIST.each do |key, value|
-        skus.count(item)
+        skus.count(item) % value[item.to_sym][:quant]
       end
     end
   end
 
 end
+
 
 
 
