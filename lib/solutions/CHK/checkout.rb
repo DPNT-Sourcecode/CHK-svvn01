@@ -56,12 +56,15 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 
-  def add_specials_to_order
+  def add_specials_to_order(order_summary, item, quantity)
+    item_special = (item.to_s + '_special').to_sym
+    order_summary[item_special] = quant_specials(item, quantity)
   end
 
   def quant_specials(item, quantity)
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
