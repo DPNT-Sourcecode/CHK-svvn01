@@ -6,11 +6,11 @@ class Checkout
   SPECIALS_PRICES = { A: 130 , B: 45 }
 
   def checkout(skus)
-  p summarise_order(skus)
-  p sum_specials(summarise_order(skus))
-  p sum_normals(sum_specials(summarise_order(skus)))
     sum_normals(sum_specials(summarise_order(skus)))
+    @running_total
   end
+
+  private
 
   def summarise_order(skus)
     order_summary = {}
@@ -26,14 +26,14 @@ class Checkout
     @running_total = 0
     order_summary.each do |item, quantity|
       add_special_items(item, quantity)
-      calc_remainder(item, quantity)
+      calc_remainder(order_after_specials, item, quantity)
     end
     order_after_specials
   end
 
   def sum_normals(order_after_specials)
     order_after_specials.each do |item, quantity|
-      add_normal_items(item, quantity)
+      add_normal_items(order_after_specials, item, quantity)
     end
   end
 
@@ -45,15 +45,16 @@ class Checkout
     @running_total += order_after_specials[item] * STOCK_PRICES[item]
   end
 
-  def calc_remainder(item, quantity)
+  def calc_remainder(order_after_specials, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
-    @order_after_specials[item] = remainder unless remainder.nil?
+    order_after_specials[item] = remainder unless remainder.nil?
   end
 
   def quant_specials(item, quantity)
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 

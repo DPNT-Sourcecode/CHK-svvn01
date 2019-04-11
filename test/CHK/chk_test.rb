@@ -22,19 +22,6 @@ class ClientTest < Minitest::Test
     assert_equal hash, Checkout.new.summarise_order('ABCA'), 'Takes order list and generates hash'
   end
 
-  def test_specials_total
-    order_hash = { A: 5, B: 10 }
-    assert_equal 355, Checkout.new.sum_specials(order_hash), 'Sums the cost of the items on special'
-  end
-
-  def test_calc_remainder
-    order_hash = { A: 5, B: 10, C: 2 }
-    order_after_specials = { A: 2, B: 0, C: 2 }
-    c = Checkout.new
-    c.sum_specials(order_hash)
-    assert_equal order_after_specials, c.order_after_specials, 'Calcs how many items left over after special'
-  end
-
   def test_calc_total
     skus = 'AAAABBBCCD'
     assert_equal 310, Checkout.new.checkout(skus), 'Calcs total for big order'
@@ -42,6 +29,7 @@ class ClientTest < Minitest::Test
 
 
 end
+
 
 
 
