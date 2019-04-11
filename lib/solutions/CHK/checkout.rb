@@ -18,19 +18,20 @@ class Checkout
    sum
   end
 
-  def order_list(skus)
-    @list = {}
-    skus.uniq.each_char do |item|
-      @list[item.to_sym] = skus.count(item)
+  def summarise_order(skus)
+    items_array = skus.chars.uniq
+    @order_summary = {}
+    items_array.each do |item|
+      @order_summary[item.to_sym] = skus.count(item)
     end
-    @list
+    @order_summary
   end
 
-  # def calc_remainder(skus)
-  #   skus.each_char do |item|
-  #     2
-  #   end
-  # end
+  def calc_remainder(skus)
+    skus.each_char do |item|
+      2
+    end
+  end
 
   # def sum_specials(skus)
   #   sum = 0
@@ -48,5 +49,6 @@ class Checkout
   # end
 
 end
+
 
 
