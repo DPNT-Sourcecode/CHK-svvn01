@@ -34,22 +34,13 @@ class ClientTest < Minitest::Test
     c.sum_specials(order_hash)
     assert_equal order_after_specials, c.order_after_specials, 'Calcs how many items left over after special'
   end
-  #
-  # def test_calc_remainder_2
-  #   order_hash = { B: 3 }
-  #   order_after_specials = { B: 1 }
-  #   assert_equal order_after_specials, Checkout.new.calc_remainder(order_hash), 'Calcs how many items left over after special'
-  # end
 
+  def test_calc_total
+    skus = 'AAAABBBCCD'
+    assert_equal 310, Checkout.new.checkout(skus)
+  end
 
-
-  # def test_item_on_special
-  #   assert_equal 130, Checkout.new.sum_special('AAA') 'Check if item and quantity on special'
-  # end
-
-  # def test_item_on_special
-  #   assert_equal 130, Checkout.new.checkout('AAA') 'Get value of special items'
-  # end
 
 end
+
 

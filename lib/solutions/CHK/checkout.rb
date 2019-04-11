@@ -19,17 +19,17 @@ class Checkout
   end
 
   def sum_specials(order_summary)
-    @order_after_specials = order_summary
+    order_after_specials = order_summary
     @running_total = 0
     order_summary.each do |item, quantity|
       add_special_items(item, quantity)
       calc_remainder(item, quantity)
     end
-    @order_after_specials
+    order_after_specials 
   end
 
-  def sum_normals
-    @order_after_specials.each do |item, quantity|
+  def sum_normals(order_after_specials)
+    order_after_specials.each do |item, quantity|
       add_normal_items(item, quantity)
     end
   end
@@ -51,5 +51,6 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
