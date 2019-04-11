@@ -18,16 +18,23 @@ class Checkout
    sum
   end
 
-  def num_specials(skus)
-    sum = 0
-    skus.each_char do |item|
-      SPECIALS_LIST.each do |key, value|
-        sum += (skus.count(item) / value[item.to_sym][:quant]) * value[item.to_sym][:price]
-      end
-    end
+  # def sum_specials(skus)
+  #   sum = 0
+  #   skus.each_char do |item|
+  #     SPECIALS_LIST.each do |key, value|
+  #        num_bundles = skus.count(item) / value[item.to_sym][:quant])
+  #        sum = num_bundles * value[item.to_sym][:price]
+  #     end
+  #   end
+  # end
+
+  def sum(skus, item, key, value)
+    num_bundles = skus.count(item) / value[item.to_sym][:quant])
+    sum = num_bundles * value[item.to_sym][:price]
   end
 
 end
+
 
 
 
