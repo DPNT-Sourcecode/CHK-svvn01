@@ -42,11 +42,10 @@ class Checkout
   end
 
   def calc_remainder(item, quantity)
-    @order_after_specials = {}
-    @order_after_specials[item] =  quantity % SPECIALS_LIST[item][:quant]
+    @order_after_specials[item] = quantity % SPECIALS_LIST[item][:quant]
   end
 
-  # attr_reader :order_after_special, :running_total
+  attr_reader :order_after_specials, :running_total
 
   # def sum_specials(skus)
   #   sum = 0
@@ -64,5 +63,6 @@ class Checkout
   # end
 
 end
+
 
 
