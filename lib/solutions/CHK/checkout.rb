@@ -27,6 +27,12 @@ class Checkout
     order_summary
   end
 
+  def iterate_over_hash(order_summary, method)
+    order_summary.each do |item, quantity|
+      method(item, quantity)
+    end
+  end
+
   def calc_remainder(order_summary)
     order_after_specials = {}
     order_summary.each do |item, quantity|
@@ -59,3 +65,4 @@ class Checkout
   # end
 
 end
+
