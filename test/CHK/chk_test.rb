@@ -25,7 +25,16 @@ class ClientTest < Minitest::Test
     assert_equal 130, Checkout::SPECIALS_LIST[:A][:price], 'Check specials list'
   end
 
+  def test_sum_items
+    assert_equal 80, Checkout.new.checkout('AB'), 'Sum total of simple order'
+  end
+
+  # def test_item_on_special
+  #   assert_equal , Checkout.new.checkout('AAA')
+  # end
+
 end
+
 
 
 
