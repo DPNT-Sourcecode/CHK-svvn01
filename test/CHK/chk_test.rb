@@ -8,9 +8,14 @@ require_solution 'CHK'
 
 class ClientTest < Minitest::Test
 
-  def test_order
+  def test_sum_order
     assert_equal 50, Checkout.new.checkout('A'), 'Calc price of one unit'
   end
 
+  def test_sum_order_2
+    assert_equal 30, Checkout.new.checkout('B'), 'Calc price of one unit'
+  end
+
 end
+
 
