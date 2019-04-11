@@ -7,6 +7,7 @@ class Checkout
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
+    @running_total = 0
     sum_normals(sum_specials(summarise_order(skus)))
     @running_total
   end
@@ -29,13 +30,11 @@ class Checkout
   end
 
   def sum_specials(order_summary)
-    order_after_specials = order_summary
-    @running_total = 0
     order_summary.each do |item, quantity|
       add_special_items(item, quantity)
-      calc_remainder(order_after_specials, item, quantity)
+      calc_remainder(order_summary, item, quantity)
     end
-    order_after_specials
+    order_summary
   end
 
   def sum_normals(order_after_specials)
@@ -61,3 +60,4 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
