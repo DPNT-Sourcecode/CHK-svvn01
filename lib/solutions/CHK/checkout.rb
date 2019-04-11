@@ -28,12 +28,13 @@ class Checkout
   #   end
   # end
 
-  def sum(skus, item, key, value)
-    num_bundles = skus.count(item) / value[item.to_sym][:quant])
-    sum = num_bundles * value[item.to_sym][:price]
-  end
+  # def sum(skus, item, key, value)
+  #   num_bundles = skus.count(item) / value[item.to_sym][:quant])
+  #   sum = num_bundles * value[item.to_sym][:price]
+  # end
 
 end
+
 
 
 
