@@ -1,7 +1,7 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
 
-  STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15 }
+  STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, A_special: 140, B_special: 45 }
   SPECIALS_QUANTS = { A: 3, B: 2 }
   SPECIALS_PRICES = { A: 130 , B: 45 }
 
@@ -32,7 +32,8 @@ class Checkout
   def sum_specials(order_summary)
     order_summary.each do |item, quantity|
       take_specials_off_order(order_summary, item, quantity)
-      add_special_items(item, quantity, SPECIALS_PRICES)
+      add_specials_to_order(order_summary, item, quantity)
+      add_special_items(order_summary, item, quantity, SPECIALS_PRICES)
     end
     order_summary
   end
@@ -43,8 +44,8 @@ class Checkout
     end
   end
 
-  def add_special_items(item, quantity, price_list)
-    @running_total += quant_specials(item, quantity) * price_list[item] if price_list.key?(item)
+  def add_special_items(order_summary, item, quantity, price_list)
+    @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
   end
 
   def add_normal_items(order_after_specials, item, quantity, price_list)
@@ -65,6 +66,7 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 
