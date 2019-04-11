@@ -35,13 +35,15 @@ class ClientTest < Minitest::Test
   end
 
   def test_calc_remainder
-    hash = { A: 5 }
-    assert_equal 2, Checkout.new.calc_remainder(hash), 'Calcs how many items left over after special'
+    order_hash = { A: 5 }
+    order_after_specials = { A: 2 }
+    assert_equal order_after_specials, Checkout.new.calc_remainder(order_hash), 'Calcs how many items left over after special'
   end
 
   def test_calc_remainder_2
-    hash = { B: 2 }
-    assert_equal 1, Checkout.new.calc_remainder(hash), 'Calcs how many items left over after special'
+    order_hash = { B: 3 }
+    order_after_specials = { B: 1 }
+    assert_equal order_after_specials, Checkout.new.calc_remainder(order_hash), 'Calcs how many items left over after special'
   end
 
   # def test_item_on_special
@@ -53,5 +55,6 @@ class ClientTest < Minitest::Test
   # end
 
 end
+
 
 

@@ -30,7 +30,7 @@ class Checkout
   def calc_remainder(order_summary)
     @order_after_specials = {}
     order_summary.each do |item, quantity|
-      @order_after_specials[item] =  quantity % STOCK_LIST[item]
+      @order_after_specials[item] =  quantity % SPECIALS_LIST[item][:quant]
     end
     @order_after_specials
   end
@@ -51,6 +51,7 @@ class Checkout
   # end
 
 end
+
 
 
 
