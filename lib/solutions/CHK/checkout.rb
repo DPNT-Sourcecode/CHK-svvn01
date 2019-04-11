@@ -31,8 +31,8 @@ class Checkout
     @order_after_specials = {}
     @running_total = 0
     order_summary.each do |item, quantity|
-      sum_total(item, quantity)
-      calc_remainder(item, quantity)
+      sum_item_special(item, quantity)
+      # calc_remainder(item, quantity)
     end
   end
 
@@ -62,6 +62,7 @@ class Checkout
   # end
 
 end
+
 
 
 
