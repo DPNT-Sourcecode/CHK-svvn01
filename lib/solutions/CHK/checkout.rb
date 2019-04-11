@@ -59,6 +59,3 @@ class Checkout
   # end
 
 end
-
-
-
