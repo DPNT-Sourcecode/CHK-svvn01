@@ -38,7 +38,7 @@ class Checkout
   end
 
   def sum_item_special(item, quantity)
-    @running_total += (quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price]
+    @running_total += (quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price] if SPECIALS_LIST.key?(item)
   end
 
   def calc_remainder(item, quantity)
@@ -64,6 +64,7 @@ class Checkout
   # end
 
 end
+
 
 
 
