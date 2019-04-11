@@ -30,10 +30,10 @@ class Checkout
   end
 
   def sum_specials(order_summary)
-    @special_order_summary = {}
+    special_order_summary = {}
     order_summary.each do |item, quantity|
       take_specials_off_order(order_summary, item, quantity)
-      add_specials_to_order(order_summary, item, quantity)
+      add_specials_to_order(order_summary, special_order_summary, item, quantity)
     end
     order_summary
   end
@@ -53,14 +53,15 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 
-  def add_specials_to_order(order_summary, item, quantity)
-    @special_order_summary[item_special] = quant_specials(item, quantity)
+  def add_specials_to_order(order_summary, special_order_summary, item, quantity)
+    special_order_summary[item_special] = quant_specials(item, quantity)
   end
 
   def quant_specials(item, quantity)
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 
