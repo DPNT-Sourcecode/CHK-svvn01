@@ -8,18 +8,6 @@ require_solution 'CHK'
 
 class ClientTest < Minitest::Test
 
-  def test_sum_order
-    assert_equal 50, Checkout.new.checkout('A'), 'Calc price of one unit'
-  end
-
-  def test_sum_order_2
-    assert_equal 30, Checkout.new.checkout('B'), 'Calc price of one unit'
-  end
-
-  def test_sum_order_3
-    assert_equal 50, Checkout.new.checkout('A'), 'Calc price of one unit'
-  end
-
   def test_stock_list
     assert_equal 50, Checkout::STOCK_PRICES[:A], 'Check stock list'
   end
@@ -27,10 +15,6 @@ class ClientTest < Minitest::Test
   def test_specials_list
     assert_equal 3, Checkout::SPECIALS_QUANTS[:A], 'Check specials list'
     assert_equal 130, Checkout::SPECIALS_PRICES[:A], 'Check specials list'
-  end
-
-  def test_sum_items
-    assert_equal 80, Checkout.new.sum_total('AB'), 'Sum total of simple order'
   end
 
   def test_order_into_hash
@@ -68,3 +52,4 @@ class ClientTest < Minitest::Test
   # end
 
 end
+

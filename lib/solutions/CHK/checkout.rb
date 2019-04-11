@@ -7,17 +7,7 @@ class Checkout
 
 
   def checkout(skus)
-    STOCK_PRICES[skus.to_sym]
-  end
-
-  def sum_total(skus)
-    sum = 0
-    skus.each_char do |item|
-      STOCK_PRICES.each do |key, value|
-        sum += value if item.to_sym == key
-      end
-    end
-   sum
+    sum_specials(summarise_order(skus))
   end
 
   def summarise_order(skus)
@@ -36,7 +26,8 @@ class Checkout
       add_special_items(item, quantity)
       calc_remainder(item, quantity)
     end
-    @running_total
+    @order_after_specials
+#  take this out
   end
 
   def sum_normals
@@ -80,3 +71,4 @@ class Checkout
   # end
 
 end
+
