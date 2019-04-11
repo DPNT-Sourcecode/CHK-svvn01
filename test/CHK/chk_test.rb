@@ -21,7 +21,13 @@ class ClientTest < Minitest::Test
     skus = 'AAAABBBCCD'
     assert_equal 310, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
+
+  def test_erenous_input
+    skus = 'AAaABBBCCD'
+    assert_equal -1, Checkout.new.checkout(skus), 'Calcs total for big order'
+  end
 end
+
 
 
 
