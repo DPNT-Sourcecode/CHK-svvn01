@@ -5,14 +5,13 @@ class Checkout
   SPECIALS_QUANTS = { A: 3, B: 2 }
   SPECIALS_PRICES = { A: 130 , B: 45 }
 
-
   def checkout(skus)
-    sum_specials(summarise_order(skus))
+    sum_normals(sum_specials(summarise_order(skus)))
   end
 
   def summarise_order(skus)
-    items_array = skus.chars.uniq
     order_summary = {}
+    items_array = skus.chars.uniq
     items_array.each do |item|
       order_summary[item.to_sym] = skus.count(item)
     end
@@ -27,7 +26,6 @@ class Checkout
       calc_remainder(item, quantity)
     end
     @order_after_specials
-#  take this out
   end
 
   def sum_normals
@@ -52,23 +50,6 @@ class Checkout
   def quant_specials(item, quantity)
     quantity / SPECIALS_QUANTS[item]
   end
-
-  attr_reader :order_after_specials, :running_total
-
-  # def sum_specials(skus)
-  #   sum = 0
-  #   skus.each_char do |item|
-  #     SPECIALS_LIST.each do |key, value|
-  #        num_bundles = skus.count(item) / value[item.to_sym][:quant])
-  #        sum = num_bundles * value[item.to_sym][:price]
-  #     end
-  #   end
-  # end
-
-  # def sum(skus, item, key, value)
-  #   num_bundles = skus.count(item) / value[item.to_sym][:quant])
-  #   sum = num_bundles * value[item.to_sym][:price]
-  # end
-
 end
+
 
