@@ -31,8 +31,8 @@ class Checkout
 
   def sum_specials(order_summary)
     order_summary.each do |item, quantity|
-      add_special_items(item, quantity, SPECIALS_PRICES)
       calc_remainder(order_summary, item, quantity)
+      add_special_items(item, quantity, SPECIALS_PRICES)
     end
     order_summary
   end
@@ -60,6 +60,7 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 
