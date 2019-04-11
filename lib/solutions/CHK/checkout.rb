@@ -39,13 +39,17 @@ class Checkout
     @running_total
   end
 
-  def sum_items(item, quantity)
-    @running_total += (quantity / SPECIALS_QUANTS[item]) * SPECIALS_PRICES[item] if SPECIALS_QUANTS.key?(item)
+  def sum_special_items(item, quantity)
+    @running_total += quant_specials(item, quantity) * SPECIALS_PRICES[item] if SPECIALS_PRICES.key?(item)
   end
 
   def calc_remainder(item, quantity)
-    remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_QUANTS.key?(item)
+    remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
     @order_after_specials[item] = remainder unless remainder.nil?
+  end
+
+  def quant_specials(item, quantity)
+    quantity / SPECIALS_QUANTS[item]
   end
 
   attr_reader :order_after_specials, :running_total
@@ -66,3 +70,4 @@ class Checkout
   # end
 
 end
+
