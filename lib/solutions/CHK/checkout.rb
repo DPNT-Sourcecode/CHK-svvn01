@@ -42,6 +42,7 @@ class Checkout
   end
 
   def calc_remainder(item, quantity)
+    @order_after_specials = {}
     @order_after_specials[item] =  quantity % SPECIALS_LIST[item][:quant]
   end
 
@@ -63,4 +64,5 @@ class Checkout
   # end
 
 end
+
 
