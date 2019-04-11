@@ -17,10 +17,16 @@ class ClientTest < Minitest::Test
   end
 
   def test_stock_list
-    assert_equal 50, Checkout::STOCKLIST[:A], 'Check stock list'
+    assert_equal 50, Checkout::STOCK_LIST[:A], 'Check stock list'
+  end
+
+  def test_specials_list
+    assert_equal 3, Checkout::SPECIALS_LIST[:A][:quant], 'Check specials list'
+    assert_equal 130, Checkout::SPECIALS_LIST[:A][:price], 'Check specials list'
   end
 
 end
+
 
 
 
