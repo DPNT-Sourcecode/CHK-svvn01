@@ -17,16 +17,12 @@ class ClientTest < Minitest::Test
     assert_equal 130, Checkout::SPECIALS_PRICES[:A], 'Check specials list'
   end
 
-  def test_order_into_hash
-    hash = { A: 2, B: 1, C: 1 }
-    assert_equal hash, Checkout.new.summarise_order('ABCA'), 'Takes order list and generates hash'
-  end
-
   def test_calc_total
     skus = 'AAAABBBCCD'
     assert_equal 310, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
 end
+
 
 
 

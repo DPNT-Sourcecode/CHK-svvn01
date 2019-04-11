@@ -6,6 +6,7 @@ class Checkout
   SPECIALS_PRICES = { A: 130 , B: 45 }
 
   def checkout(skus)
+    return -1 if check_skus(skus) == false
     sum_normals(sum_specials(summarise_order(skus)))
     @running_total
   end
@@ -13,7 +14,9 @@ class Checkout
   private
 
   def check_skus(skus)
-    skus
+    skus.each_char do |item|
+      return false unless STOCK_PRICES.key?(item.to_sym)
+    end
   end
 
   def summarise_order(skus)
@@ -58,6 +61,7 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 
