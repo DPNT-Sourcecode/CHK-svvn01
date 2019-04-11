@@ -33,13 +33,13 @@ class Checkout
     @order_after_specials = order_summary
     @running_total = 0
     order_summary.each do |item, quantity|
-      sum_item_special(item, quantity)
+      sum_items(item, quantity)
       calc_remainder(item, quantity)
     end
     @running_total
   end
 
-  def sum_item_special(item, quantity)
+  def sum_items(item, quantity)
     @running_total += (quantity / SPECIALS_QUANTS[item]) * SPECIALS_PRICES[item] if SPECIALS_QUANTS.key?(item)
   end
 
@@ -66,10 +66,3 @@ class Checkout
   # end
 
 end
-
-
-
-
-
-
-
