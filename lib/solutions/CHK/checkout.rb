@@ -34,10 +34,18 @@ class Checkout
       sum_item_special(item, quantity)
       # calc_remainder(item, quantity)
     end
+    @running_total
   end
 
   def sum_item_special(item, quantity)
     @running_total += (quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price]
+@n = 0
+p 'iteration number... '
+p @n += 1
+p @running_total
+p quantity
+p SPECIALS_LIST[item][:quant]
+p SPECIALS_LIST[item][:price]
   end
 
   def calc_remainder(item, quantity)
@@ -62,9 +70,3 @@ class Checkout
   # end
 
 end
-
-
-
-
-
-
