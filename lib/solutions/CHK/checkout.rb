@@ -31,7 +31,7 @@ class Checkout
 
   def sum_specials(order_summary)
     order_summary.each do |item, quantity|
-      calc_remainder(order_summary, item, quantity)
+      take_specials_off_order(order_summary, item, quantity)
       add_special_items(item, quantity, SPECIALS_PRICES)
     end
     order_summary
@@ -51,13 +51,9 @@ class Checkout
     @running_total += order_after_specials[item] * price_list[item]
   end
 
-  def calc_remainder(order_after_specials, item, quantity)
+  def take_specials_off_order(order_summary, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
-    order_after_specials[item] = remainder unless remainder.nil?
-  end
-
-
-  def take_specials_off_order
+    order_summary[item] = remainder unless remainder.nil?
   end
 
   def add_specials_to_order
@@ -67,4 +63,5 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
