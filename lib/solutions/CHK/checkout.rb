@@ -54,13 +54,14 @@ class Checkout
   end
 
   def add_specials_to_order(order_summary, special_order_summary, item, quantity)
-    special_order_summary[item_special] = quant_specials(item, quantity)
+    special_order_summary[item] = quant_specials(item, quantity)
   end
 
   def quant_specials(item, quantity)
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 
