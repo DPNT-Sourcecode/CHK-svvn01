@@ -28,7 +28,7 @@ class Checkout
   end
 
   def sum_specials(order_summary)
-    @order_after_specials = {}
+    @order_after_specials = order_summary
     @running_total = 0
     order_summary.each do |item, quantity|
       sum_item_special(item, quantity)
@@ -43,8 +43,7 @@ class Checkout
 
   def calc_remainder(item, quantity)
     remainder = quantity % SPECIALS_LIST[item][:quant] if SPECIALS_LIST.key?(item)
-    @order_after_specials[item] = remainder unless remainder.nil? || remainder == 0
-p @order_after_specials
+    @order_after_specials[item] = remainder unless remainder.nil?
   end
 
   attr_reader :order_after_specials, :running_total
@@ -65,6 +64,7 @@ p @order_after_specials
   # end
 
 end
+
 
 
 

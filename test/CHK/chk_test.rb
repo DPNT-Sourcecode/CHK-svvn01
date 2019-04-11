@@ -40,8 +40,8 @@ class ClientTest < Minitest::Test
   end
 
   def test_calc_remainder
-    order_hash = { A: 5, B: 10 }
-    order_after_specials = { A: 2 }
+    order_hash = { A: 5, B: 10, C: 2 }
+    order_after_specials = { A: 2, B: 0, C: 2 }
     c = Checkout.new
     c.sum_specials(order_hash)
     assert_equal order_after_specials, c.order_after_specials, 'Calcs how many items left over after special'
@@ -64,6 +64,7 @@ class ClientTest < Minitest::Test
   # end
 
 end
+
 
 
 
