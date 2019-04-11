@@ -35,7 +35,10 @@ class Checkout
     order_after_specials
   end
 
-  def sum_specials
+  def sum_specials(order_summary)
+    order_summary.each do |item, quantity|
+      quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price]
+    end
   end
 
   # def sum_specials(skus)
@@ -54,4 +57,5 @@ class Checkout
   # end
 
 end
+
 
