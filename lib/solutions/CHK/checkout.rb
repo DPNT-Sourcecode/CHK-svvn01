@@ -18,10 +18,11 @@ class Checkout
    sum
   end
 
-  def calc_remainder(skus)
-    2
-
-  end
+  # def calc_remainder(skus)
+  #   skus.each_char do |item|
+  #     2
+  #   end
+  # end
 
   # def sum_specials(skus)
   #   sum = 0
@@ -39,4 +40,5 @@ class Checkout
   # end
 
 end
+
 
