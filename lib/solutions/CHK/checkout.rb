@@ -18,15 +18,16 @@ class Checkout
    sum
   end
 
-  def on_special(skus)
+  def num_specials(skus)
     skus.each_char do |item|
       SPECIALS_LIST.each do |key, value|
-        skus.count(item) % value[item.to_sym][:quant]
+        (skus.count(item) / value[item.to_sym][:quant]) * value[item.to_sym][:price]
       end
     end
   end
 
 end
+
 
 
 
