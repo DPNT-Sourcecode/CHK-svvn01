@@ -12,13 +12,12 @@ class Checkout
     sum = 0
     skus.each_char do |item|
       STOCK_LIST.each do |key, value|
-        sum += value if key == item.to_sym
+        sum += value if item.to_sym == key
+p key
+p item.to_sym
       end
     end
+    sum
   end
+
 end
-
-
-
-
-
