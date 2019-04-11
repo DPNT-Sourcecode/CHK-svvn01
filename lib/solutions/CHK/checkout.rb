@@ -35,7 +35,7 @@ class Checkout
     order_after_specials
   end
 
-  def num_bundles
+  def sum_specials
   end
 
   # def sum_specials(skus)
@@ -54,3 +54,4 @@ class Checkout
   # end
 
 end
+
