@@ -27,26 +27,21 @@ class Checkout
     order_summary
   end
 
-  def iterate_over_hash(order_summary, method)
+  def iterate_over_hash(order_summary)
+    @order_after_specials = {}
+    @running_total = 0
     order_summary.each do |item, quantity|
-      method(item, quantity)
+      calc_remainder(item, quantity)
+      sum_total(item, quantity)
     end
   end
 
-  def calc_remainder(order_summary)
-    order_after_specials = {}
-    order_summary.each do |item, quantity|
-      order_after_specials[item] =  quantity % SPECIALS_LIST[item][:quant]
-    end
-    order_after_specials
+  def calc_remainder(item, quantity)
+    @order_after_specials[item] =  quantity % SPECIALS_LIST[item][:quant]
   end
 
   def sum_specials(order_summary)
-    @running_total = 0
-    order_summary.each do |item, quantity|
-      @running_total += (quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price]
-    end
-    @running_total
+    @running_total += (quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price]
   end
 
   # def sum_specials(skus)
@@ -65,4 +60,5 @@ class Checkout
   # end
 
 end
+
 
