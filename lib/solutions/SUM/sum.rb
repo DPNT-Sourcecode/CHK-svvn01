@@ -2,8 +2,9 @@
 class Sum
 
   def sum(x, y)
-    raise x + y
+    x + y
   end
 
 end
+
 
