@@ -44,6 +44,7 @@ class Checkout
   def calc_remainder(item, quantity)
     remainder = quantity % SPECIALS_LIST[item][:quant] if SPECIALS_LIST.key?(item)
     @order_after_specials[item] = remainder unless remainder.nil? || remainder == 0
+p @order_after_specials
   end
 
   attr_reader :order_after_specials, :running_total
@@ -64,6 +65,7 @@ class Checkout
   # end
 
 end
+
 
 
 
