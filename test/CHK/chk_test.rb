@@ -46,6 +46,10 @@ class ClientTest < Minitest::Test
     assert_equal order_after_specials, Checkout.new.calc_remainder(order_hash), 'Calcs how many items left over after special'
   end
 
+  def test_specials_cost
+
+  end 
+
   # def test_item_on_special
   #   assert_equal 130, Checkout.new.sum_special('AAA') 'Check if item and quantity on special'
   # end
@@ -55,6 +59,7 @@ class ClientTest < Minitest::Test
   # end
 
 end
+
 
 
 
