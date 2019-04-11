@@ -21,7 +21,7 @@ class Checkout
   def order_list(skus)
     @list = {}
     skus.each_char.uniq do |item|
-      @list << item.to_sym => skus.count(item)
+      @list[item.to_sym] = skus.count(item)
     end
     @list
   end
@@ -48,3 +48,4 @@ class Checkout
   # end
 
 end
+
