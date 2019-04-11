@@ -18,5 +18,9 @@ class Checkout
    sum
   end
 
+  def on_special(skus)
+  end
+
 end
+
 

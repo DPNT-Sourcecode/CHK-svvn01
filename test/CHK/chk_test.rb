@@ -26,11 +26,16 @@ class ClientTest < Minitest::Test
   end
 
   def test_sum_items
-    assert_equal 80, Checkout.new.checkout('AB'), 'Sum total of simple order'
+    assert_equal 80, Checkout.new.sum_total('AB'), 'Sum total of simple order'
+  end
+
+  def test_item_on_special
+    assert_equal true, Checkout.new.on_special('AAA') 'Check if item and quantity on special'
   end
 
   # def test_item_on_special
-  #   assert_equal , Checkout.new.checkout('AAA')
+  #   assert_equal 130, Checkout.new.checkout('AAA') 'Get value of special items'
   # end
 
 end
+
