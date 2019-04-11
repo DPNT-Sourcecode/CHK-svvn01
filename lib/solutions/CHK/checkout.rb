@@ -43,6 +43,10 @@ class Checkout
     @running_total += quant_specials(item, quantity) * SPECIALS_PRICES[item] if SPECIALS_PRICES.key?(item)
   end
 
+  def sum_normal_items(item, quantity)
+    @running_total += @order_after_specials[item] * STOCK_PRICES[item]
+  end
+
   def calc_remainder(item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
     @order_after_specials[item] = remainder unless remainder.nil?
@@ -70,4 +74,5 @@ class Checkout
   # end
 
 end
+
 
