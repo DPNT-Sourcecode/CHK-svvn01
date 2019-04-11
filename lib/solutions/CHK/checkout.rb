@@ -1,7 +1,7 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
 
-  STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, A_special: 140, B_special: 45 }
+  STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15 }
   SPECIALS_QUANTS = { A: 3, B: 2 }
   SPECIALS_PRICES = { A: 130 , B: 45 }
 
@@ -30,6 +30,7 @@ class Checkout
   end
 
   def sum_specials(order_summary)
+    @special_order_summary = {}
     order_summary.each do |item, quantity|
       take_specials_off_order(order_summary, item, quantity)
       add_specials_to_order(order_summary, item, quantity)
@@ -53,14 +54,13 @@ class Checkout
   end
 
   def add_specials_to_order(order_summary, item, quantity)
-    item_special = (item.to_s + '_special').to_sym
-    order_summary.merge!({ item_special: quant_specials(item, quantity) })
-    # can't add new key into hash through iteration
+    @special_order_summary[item_special] = quant_specials(item, quantity)
   end
 
   def quant_specials(item, quantity)
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
