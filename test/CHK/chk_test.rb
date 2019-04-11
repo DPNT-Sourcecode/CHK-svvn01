@@ -30,7 +30,7 @@ class ClientTest < Minitest::Test
   end
 
   def test_item_on_special
-    assert_equal 1, Checkout.new.num_special('AAA') 'Check if item and quantity on special'
+    assert_equal 130, Checkout.new.sum_special('AAA') 'Check if item and quantity on special'
   end
 
   # def test_item_on_special
@@ -38,5 +38,6 @@ class ClientTest < Minitest::Test
   # end
 
 end
+
 
 
