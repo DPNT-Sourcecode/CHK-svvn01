@@ -8,8 +8,9 @@ require_solution 'CHK'
 
 class ClientTest < Minitest::Test
 
-  def test_sum
-    assert_equal 3, Sum.new.sum(1, 2), 'App should add two numbers'
+  def test_order
+    assert_equal 50, Checkout.new.checkout('A'), 'Calc price of one unit'
   end
 
 end
+
