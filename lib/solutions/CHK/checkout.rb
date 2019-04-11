@@ -43,6 +43,8 @@ class Checkout
 
   def calc_remainder(item, quantity)
     @order_after_specials[item] = quantity % SPECIALS_LIST[item][:quant]
+    # here need to deal with not additing items to the list where there are no more left and
+    # when there are no speial offer items 
   end
 
   attr_reader :order_after_specials, :running_total
@@ -63,6 +65,7 @@ class Checkout
   # end
 
 end
+
 
 
 
