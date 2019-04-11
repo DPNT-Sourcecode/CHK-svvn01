@@ -54,7 +54,7 @@ class Checkout
 
   def add_specials_to_order(order_summary, item, quantity)
     item_special = (item.to_s + '_special').to_sym
-    order_summary << order_summary[item_special] = quant_specials(item, quantity)
+    order_summary.merge!({ item_special: quant_specials(item, quantity) })
     # can't add new key into hash through iteration
   end
 
@@ -62,4 +62,5 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
