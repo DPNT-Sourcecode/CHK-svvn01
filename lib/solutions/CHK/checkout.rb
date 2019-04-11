@@ -8,9 +8,16 @@ class Checkout
     STOCK_LIST[skus.to_sym]
   end
 
-
-
+  def sum_total(skus)
+    sum = 0
+    skus.each_char do |item|
+      STOCK_LIST.each do |key, value|
+        sum += value if key == item.to_sym
+      end
+    end
+  end
 end
+
 
 
 
