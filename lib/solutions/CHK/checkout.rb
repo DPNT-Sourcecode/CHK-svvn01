@@ -33,23 +33,18 @@ class Checkout
     order_summary.each do |item, quantity|
       take_specials_off_order(order_summary, item, quantity)
       add_specials_to_order(order_summary, item, quantity)
-      add_special_items(order_summary, item, quantity, SPECIALS_PRICES)
     end
     order_summary
   end
 
   def sum_normals(order_after_specials)
     order_after_specials.each do |item, quantity|
-      add_normal_items(order_after_specials, item, quantity, STOCK_PRICES)
+      add_items(order_after_specials, item, quantity, STOCK_PRICES)
     end
   end
 
-  def add_special_items(order_summary, item, quantity, price_list)
+  def add_items(order_summary, item, quantity, price_list)
     @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
-  end
-
-  def add_normal_items(order_after_specials, item, quantity, price_list)
-    @running_total += order_after_specials[item] * price_list[item]
   end
 
   def take_specials_off_order(order_summary, item, quantity)
@@ -66,7 +61,3 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
-
-
-
-
