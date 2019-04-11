@@ -1,9 +1,12 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
 
+  STOCKLIST = {A: 50, B: 30, C: 20, D: 15}
+
   def checkout(skus)
-    50
+    STOCKLIST[skus.to_sym]
   end
 
 end
+
 
