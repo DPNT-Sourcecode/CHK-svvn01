@@ -12,6 +12,10 @@ class Checkout
 
   private
 
+  def check_skus(skus)
+    skus
+  end
+
   def summarise_order(skus)
     order_summary = {}
     items_array = skus.chars.uniq
@@ -54,6 +58,7 @@ class Checkout
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
 
 
 

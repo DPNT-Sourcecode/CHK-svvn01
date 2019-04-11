@@ -26,9 +26,8 @@ class ClientTest < Minitest::Test
     skus = 'AAAABBBCCD'
     assert_equal 310, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
-
-
 end
+
 
 
 
