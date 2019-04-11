@@ -34,11 +34,3 @@ class Checkout
   # end
 
 end
-
-
-
-
-
-
-
-
