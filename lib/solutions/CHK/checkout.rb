@@ -1,17 +1,19 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
 
-  STOCK_LIST = { A: 50, B: 30, C: 20, D: 15 }
-  SPECIALS_LIST = { A: {quant: 3, price: 130 }, B: {quant: 2, price: 45 } }
+  STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15 }
+  SPECIALS_QUANTS = { A: 3, B: 2 }
+  SPECIALS_PRICES = { A: 130 , B: 45 }
+
 
   def checkout(skus)
-    STOCK_LIST[skus.to_sym]
+    STOCK_PRICES[skus.to_sym]
   end
 
   def sum_total(skus)
     sum = 0
     skus.each_char do |item|
-      STOCK_LIST.each do |key, value|
+      STOCK_PRICES.each do |key, value|
         sum += value if item.to_sym == key
       end
     end
@@ -38,11 +40,11 @@ class Checkout
   end
 
   def sum_item_special(item, quantity)
-    @running_total += (quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price] if SPECIALS_LIST.key?(item)
+    @running_total += (quantity / SPECIALS_QUANTS[item]) * SPECIALS_PRICES[item] if SPECIALS_QUANTS.key?(item)
   end
 
   def calc_remainder(item, quantity)
-    remainder = quantity % SPECIALS_LIST[item][:quant] if SPECIALS_LIST.key?(item)
+    remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_QUANTS.key?(item)
     @order_after_specials[item] = remainder unless remainder.nil?
   end
 
@@ -64,6 +66,7 @@ class Checkout
   # end
 
 end
+
 
 
 
