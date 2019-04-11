@@ -56,7 +56,15 @@ class Checkout
     order_after_specials[item] = remainder unless remainder.nil?
   end
 
+
+  def take_specials_off_order
+  end
+
+  def add_specials_to_order
+  end
+
   def quant_specials(item, quantity)
     quantity / SPECIALS_QUANTS[item]
   end
 end
+
