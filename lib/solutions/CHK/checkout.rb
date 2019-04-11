@@ -36,9 +36,11 @@ class Checkout
   end
 
   def sum_specials(order_summary)
+    @running_total = 0
     order_summary.each do |item, quantity|
-      quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price]
+      @running_total += (quantity / SPECIALS_LIST[item][:quant]) * SPECIALS_LIST[item][:price]
     end
+    @running_total
   end
 
   # def sum_specials(skus)
@@ -57,5 +59,6 @@ class Checkout
   # end
 
 end
+
 
 

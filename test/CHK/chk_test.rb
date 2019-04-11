@@ -51,6 +51,11 @@ class ClientTest < Minitest::Test
     assert_equal 130, Checkout.new.sum_specials(order_hash), 'Sums the cost of the items on special'
   end
 
+  def test_specials_total_2
+    order_hash = { A: 5, B: 10 }
+    assert_equal 580, Checkout.new.sum_specials(order_hash), 'Sums the cost of the items on special'
+  end
+
   # def test_item_on_special
   #   assert_equal 130, Checkout.new.sum_special('AAA') 'Check if item and quantity on special'
   # end
@@ -60,5 +65,6 @@ class ClientTest < Minitest::Test
   # end
 
 end
+
 
 
