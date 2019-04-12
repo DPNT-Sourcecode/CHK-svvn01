@@ -47,8 +47,9 @@ class Checkout
     @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
   end
 
-  def calc_remainder(order_after_specials, item, quantity)
+  def calc_remainder(order_summary, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
-    order_after_specials[item] = remainder unless remainder.nil?
+p    order_summary[item] = remainder unless remainder.nil?
   end
 end
+
