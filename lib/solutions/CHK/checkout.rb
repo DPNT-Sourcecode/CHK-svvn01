@@ -51,7 +51,8 @@ class Checkout
   end
 
   def bogof_remainder(order_summary, item, quantity)
-    order_summary[:B] = order_summary[:E] - (order_summary[:B] * 2) if order_summary.key?(:E, :B)
+    num_Bs = order_summary[:E] - (order_summary[:B] * 2) if order_summary.key?(:B) && order_summary.key?(:E)
+    order_summary[:B] = num_Bs
   end
 
   def quantity_item(order_summary, item, quantity, price_list)
@@ -59,6 +60,7 @@ class Checkout
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
 
 
 
