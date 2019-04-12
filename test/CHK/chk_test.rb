@@ -29,20 +29,20 @@ p 'test_calc_total'
     assert_equal -1, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
 
-  def test_calc_E_discount
-p 'test_calc_E_discount'
+  def test_calc_E_bogof
+p 'test_calc_E_bogof'
     skus = 'EBACCA'
     assert_equal 210, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 
-  def test_calc_E_discount_2
-p 'test_calc_E_discount_2'
+  def test_calc_E_bogof_2
+p 'test_calc_E_bogof_2'
     skus = 'EEB'
     assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 
-  def test_calc_E_discount_3
-p 'test_calc_E_discount_3'
+  def test_calc_E_bogof_3
+p 'test_calc_E_bogof_3'
     skus = 'EE'
     assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
@@ -52,5 +52,12 @@ p 'test_calc_A_discount'
     skus = 'AAAAAAAAA'
     assert_equal 380, Checkout.new.checkout(skus), 'Calcs all 3 levels of A prices'
   end
+
+  def test_calc_A_and_E_bogof
+p 'test_calc_A_and_E_bogof'
+    skus = 'AAAAAAAAAEEEB'
+    assert_equal 500, Checkout.new.checkout(skus), 'Calcs all 3 levels of A prices and E bogof'
+  end
 end
+
 
