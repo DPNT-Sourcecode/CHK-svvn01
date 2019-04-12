@@ -21,8 +21,8 @@ class Checkout
   # private
 
   def check_skus(skus)
-    skus.each_char do |item|
-      return false unless STOCK_PRICES.key?(item.to_sym)
+    skus.each_char do |item_string|
+      return false unless STOCK_PRICES.key?(item_string.to_sym)
     end
   end
 
@@ -76,6 +76,7 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
