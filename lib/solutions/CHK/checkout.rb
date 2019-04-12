@@ -32,14 +32,14 @@ class Checkout
   def sum_specials(order_summary)
     order_summary.each do |item, quantity|
       calc_remainder(order_summary, item, quantity)
-      add_items(order_summary, item, quantity, SPECIALS_PRICES)
+      # add_items(order_summary, item, quantity, SPECIALS_PRICES)
     end
     order_summary
   end
 
-  def sum_normals(order_after_specials)
-    order_after_specials.each do |item, quantity|
-      add_items(order_after_specials, item, quantity, STOCK_PRICES)
+  def sum(order_summary, price_list)
+    order_summary.each do |item, quantity|
+      add_items(order_summary, item, quantity, price_list)
     end
   end
 
@@ -52,5 +52,6 @@ class Checkout
     order_after_specials[item] = remainder unless remainder.nil?
   end
 end
+
 
 
