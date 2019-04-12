@@ -76,11 +76,3 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
-
-
-
-
-
-
-
-
