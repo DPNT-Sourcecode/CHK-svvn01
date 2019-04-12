@@ -57,7 +57,11 @@ p @running_total
     end
   end
 
+  def add_items_on_special
+  end
+
   def specials_remainder(order_summary, item, quantity)
+# here would need to go round twice with both specials lists
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
 p 'remainder...'
 p remainder
@@ -69,3 +73,4 @@ p remainder
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
