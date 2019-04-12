@@ -11,9 +11,14 @@ class Checkout
     return -1 if check_skus(skus) == false
     @running_total = 0
     @specials_summary = {}
-    sum(update_order_for_specials(summarise_order(skus)), STOCK_PRICES)
+    @specials_summary_2 = {}
+    @order_summary = summarise_order(skus)
+    update_order_for_specials(@order_summary, @specials_summary, SPECIALS_PRICES)
+    update_order_for_specials(@order_summary, @specials_summary_2, SPECIALS_PRICES_2)
+    sum(@order_summary), STOCK_PRICES)
 # call update_order_for_specials twice, once with each stock list/price list
     sum(@specials_summary, SPECIALS_PRICES)
+    sum(@specials_summary_2, SPECIALS_PRICES_2)
     # sum(@specials_summary_2, SPECIALS_PRICES_2)
 # need to work out how you sum the lists with different price lists
     @running_total
@@ -36,13 +41,13 @@ class Checkout
     order_summary
   end
 
-  def update_order_for_specials(order_summary) # price list arg goes into add_items_on_special
+  def update_order_for_specials(order_summary, specials_summary, price_list) # price list arg goes into add_items_on_special
 # here would need to go round twice with both specials lists
     remove_items_on_bogof(order_summary)
     order_summary.each do |item, quantity|
 p 'item...'
 p item
-      add_items_on_special(@specials_summary, item, quantity, SPECIALS_PRICES)
+      add_items_on_special(specials_summary, item, quantity, price_list)
       remove_items_on_special(order_summary, item, quantity)
     end
     order_summary
@@ -78,4 +83,5 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
