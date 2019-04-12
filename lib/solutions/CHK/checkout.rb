@@ -13,6 +13,7 @@ class Checkout
     @specials_summary = {}
     @specials_summary_2 = {}
     @order_summary = summarise_order(skus)
+    remove_items_on_bogof(@order_summary)
     update_order_for_specials(@order_summary, @specials_summary, SPECIALS_PRICES)
     update_order_for_specials(@order_summary, @specials_summary_2, SPECIALS_PRICES_2)
     sum(@order_summary, STOCK_PRICES)
@@ -43,7 +44,7 @@ class Checkout
 
   def update_order_for_specials(order_summary, specials_summary, price_list) # price list arg goes into add_items_on_special
 # here would need to go round twice with both specials lists
-    remove_items_on_bogof(order_summary)
+
     order_summary.each do |item, quantity|
 p 'item...'
 p item
@@ -84,6 +85,7 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
