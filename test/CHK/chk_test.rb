@@ -16,6 +16,8 @@ class ClientTest < Minitest::Test
   def test_specials_list
     assert_equal 3, Checkout::SPECIALS_QUANTS[:A], 'Check specials list'
     assert_equal 130, Checkout::SPECIALS_PRICES[:A], 'Check specials list'
+    assert_equal 2, Checkout::SPECIALS_QUANTS[:E], 'Check specials list'
+    assert_equal -30, Checkout::SPECIALS_PRICES[:E], 'Check specials list'
   end
 
   def test_calc_total
@@ -28,4 +30,5 @@ class ClientTest < Minitest::Test
     assert_equal -1, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
 end
+
 
