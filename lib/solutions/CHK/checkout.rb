@@ -31,11 +31,12 @@ class Checkout
   end
 
   def remove_items_on_special(order_summary)
+    specials_summary = {}
     bogof_remainder(order_summary)
     order_summary.each do |item, quantity|
 p 'item...'
 p item
-      # add_items_on_special(order_with_specials, item, quantity, price_list)
+      add_items_on_special(specials_summary, item, quantity, price_list)
       specials_remainder(order_summary, item, quantity)
     end
     order_summary
@@ -58,10 +59,10 @@ p @running_total
     end
   end
 
-  # def add_items_on_special(order_summary, item, quantity, price_list)
-  #   special_item = (item.to_s + '_special').to_sym
-  #   order_summary[special_item] = quantity / SPECIALS_QUANTS[item] if price_list.key?(item)
-  # end
+  def add_items_on_special(order_summary, item, quantity, price_list)
+    special_item = (item.to_s + '_special').to_sym
+    order_summary[special_item] = quantity / SPECIALS_QUANTS[item] if price_list.key?(item)
+  end
 
   def specials_remainder(order_summary, item, quantity)
 # here would need to go round twice with both specials lists
@@ -76,6 +77,7 @@ p remainder
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
 
 
 
