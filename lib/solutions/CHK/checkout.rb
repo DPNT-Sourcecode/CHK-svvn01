@@ -14,6 +14,7 @@ class Checkout
     sum(update_order_for_specials(summarise_order(skus)), STOCK_PRICES)
 # call update_order_for_specials twice, once with each stock list/price list
     sum(@specials_summary, SPECIALS_PRICES)
+    # sum(@specials_summary_2, SPECIALS_PRICES_2)
 # need to work out how you sum the lists with different price lists
     @running_total
   end
@@ -53,6 +54,7 @@ p 'quantity item...'
       @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
 p 'running total...'
 p @running_total
+# do we need this if statement?
     end
   end
 
@@ -76,3 +78,4 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
