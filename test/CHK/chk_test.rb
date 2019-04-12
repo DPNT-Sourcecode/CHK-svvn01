@@ -35,4 +35,3 @@ class ClientTest < Minitest::Test
     assert_equal 210, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 end
-

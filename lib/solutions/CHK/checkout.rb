@@ -53,9 +53,3 @@ class Checkout
  #   quantity / SPECIALS_QUANTS[item]
  # end
 end
-
-
-
-
-
-
