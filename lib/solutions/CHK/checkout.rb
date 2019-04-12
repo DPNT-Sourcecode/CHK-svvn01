@@ -2,8 +2,10 @@
 class Checkout
 
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
-  SPECIALS_QUANTS = { A: 5, A: 3, B: 2 }
-  SPECIALS_PRICES = { A: 200, A: 130, B: 45 }
+  SPECIALS_QUANTS = { A: 5, B: 2 }
+  SPECIALS_PRICES = { A: 200, B: 45 }
+  SPECIALS_QUANTS_2 = { A: 3 }
+  SPECIALS_PRICES_2 = { A: 130 }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -44,9 +46,7 @@ p item
 
   def sum(order_summary, price_list)
     order_summary.each do |item, quantity|
-      # item_quantity = quantity_item(order_summary, item, quantity, price_list)
 p 'quantity item...'
-# p quantity_item(order_summary, item, quantity, price_list)
       @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
 p 'running total...'
 p @running_total
@@ -73,12 +73,8 @@ p 'remainder...'
 p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
-
-  # def quantity_item(order_summary, item, quantity, price_list)
-  #   return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES && price_list.key?(item)
-  #   return order_summary[item] if price_list == STOCK_PRICES
-  # end
 end
+
 
 
 
