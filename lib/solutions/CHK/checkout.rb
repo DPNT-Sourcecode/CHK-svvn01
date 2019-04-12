@@ -8,7 +8,8 @@ class Checkout
   def checkout(skus)
     return -1 if check_skus(skus) == false
     @running_total = 0
-    sum(remove_items_on_special(summarise_order(skus)))
+    sum(remove_items_on_special(summarise_order(skus)), STOCK_PRICES)
+    sum(order_summary, SPECIALS_PRICES)
     @running_total
   end
 
@@ -34,6 +35,7 @@ class Checkout
       calc_remainder(order_summary, item, quantity)
     end
     order_summary
+    # is this the right order summary?
   end
 
   def sum(order_summary, price_list)
@@ -51,6 +53,7 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
