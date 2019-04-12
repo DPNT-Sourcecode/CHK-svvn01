@@ -3,7 +3,7 @@ class Checkout
 
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
   SPECIALS_QUANTS = { A: 5, A: 3, B: 2 }
-  SPECIALS_PRICES = { A:, 200, A: 130 , B: 45 }
+  SPECIALS_PRICES = { A: 200, A: 130, B: 45 }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -13,7 +13,7 @@ class Checkout
     @running_total
   end
 
-  private
+  # private
 
   def check_skus(skus)
     skus.each_char do |item|
@@ -61,4 +61,5 @@ class Checkout
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
 
