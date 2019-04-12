@@ -4,8 +4,8 @@ class Checkout
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
   SPECIALS_QUANTS = { A: 3, B: 2, E: 2 }
   SPECIALS_PRICES = { A: 130 , B: 45, E: 50 }
-  BOGOF_QUANTS = { E: 2 }
-  BOGOF_FREEBEES = { E: :B }
+  BOGOF_QUANTS = { B: 1 }
+  BOGOF_FREEBEES = { E: 2 }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -34,7 +34,7 @@ class Checkout
 
   def remove_items_on_special(order_summary)
     order_summary.each do |item, quantity|
-      calc_remainder(order_summary, item, quantity)
+      STOCK_PRICES(order_summary, item, quantity)
     end
     order_summary
   end
@@ -46,13 +46,13 @@ class Checkout
     end
   end
 
-  def calc_remainder(order_summary, item, quantity)
+  def specials_remainder(order_summary, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
     order_summary[item] = remainder unless remainder.nil?
   end
 
-  def bogof(order_summary, item)
-    order_summary[:E] - (order_summary[:B] * 2)
+  def bogof_remainder(order_summary, item, quantity)
+    order_summary[item] =  - (order_summary[:B] * 2)
   end
 
   def quantity_item(order_summary, item, quantity, price_list)
@@ -62,4 +62,5 @@ class Checkout
 
 
 end
+
 
