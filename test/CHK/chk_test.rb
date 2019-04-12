@@ -29,6 +29,12 @@ class ClientTest < Minitest::Test
     skus = 'AAaABBBCCD'
     assert_equal -1, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
+
+  def test_calc_E_discount
+    skus = 'EEB'
+    assert_equal 50, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
+  end
 end
+
 
 
