@@ -48,7 +48,12 @@ class Checkout
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
     order_summary[item] = remainder unless remainder.nil?
   end
+
+ #  def quantity_item(order_summary, item, quantity)
+ #   quantity / SPECIALS_QUANTS[item]
+ # end
 end
+
 
 
 
