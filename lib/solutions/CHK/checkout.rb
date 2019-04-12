@@ -36,7 +36,9 @@ class Checkout
     H: 10,
     K: 2,
     P: 5,
-    Q: 3}
+    Q: 3,
+    U: 3,
+    V: 3 }
 
   SPECIALS_PRICES = {
     A: 200,
@@ -45,15 +47,19 @@ class Checkout
     H: 80,
     K: 150,
     P: 200,
-    Q: 80 }
+    Q: 80,
+    U: 80,
+    V: 130 }
 
   SPECIALS_QUANTS_2 = {
     A: 3,
-    H: 5 }
+    H: 5,
+    V: 2 }
 
   SPECIALS_PRICES_2 = {
     A: 130,
-    H: 45 }
+    H: 45,
+    V: 90 }
 
   # BOGOF_QUANTS = {
   #   E: 2,
@@ -122,6 +128,3 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 end
-
-
-
