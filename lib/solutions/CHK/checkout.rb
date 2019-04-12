@@ -9,7 +9,7 @@ class Checkout
     return -1 if check_skus(skus) == false
     @running_total = 0
     sum(remove_items_on_special(summarise_order(skus)), STOCK_PRICES)
-    sum(order_summary, SPECIALS_PRICES)
+    sum(summarise_order(skus), SPECIALS_PRICES)
     @running_total
   end
 
@@ -49,7 +49,9 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 
- #  def quantity_item(order_summary, item, quantity)
- #   quantity / SPECIALS_QUANTS[item]
- # end
+  def quantity_item(order_summary, item, quantity)
+   return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES
+   return order_summary[item] if price_list == STOCK_PRICES
+ end
 end
+
