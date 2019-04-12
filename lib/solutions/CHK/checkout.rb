@@ -62,6 +62,8 @@ p @running_total
   def add_items_on_special(specials_summary, item, quantity, price_list)
     special_item = (item.to_s + '_special').to_sym
     specials_summary[special_item] = quantity / SPECIALS_QUANTS[item] if price_list.key?(item)
+p 'specials summary...'
+p specials_summary
   end
 
   def specials_remainder(order_summary, item, quantity)
@@ -77,6 +79,7 @@ p remainder
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
 
 
 
