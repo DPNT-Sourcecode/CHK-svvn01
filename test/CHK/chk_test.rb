@@ -40,8 +40,9 @@ class ClientTest < Minitest::Test
     assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 
-  def test_calc_E_discount_2
+  def test_calc_E_discount_3
     skus = 'EE'
     assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 end
+

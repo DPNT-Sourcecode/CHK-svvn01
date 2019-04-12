@@ -4,8 +4,6 @@ class Checkout
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
   SPECIALS_QUANTS = { A: 3, B: 2 }
   SPECIALS_PRICES = { A: 130 , B: 45 }
-  BOGOF_QUANTS = { E: 2 }
-  BOGOF_FREEBEES = { E: { B: 2 } }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -34,7 +32,7 @@ class Checkout
 
   def remove_items_on_special(order_summary)
     order_summary.each do |item, quantity|
-      STOCK_PRICES(order_summary, item, quantity)
+      specials_remainder(order_summary, item, quantity)
     end
     order_summary
   end
@@ -61,6 +59,7 @@ class Checkout
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
 
 
 
