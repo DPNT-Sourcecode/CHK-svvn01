@@ -17,7 +17,7 @@ class ClientTest < Minitest::Test
     assert_equal 3, Checkout::SPECIALS_QUANTS[:A], 'Check specials list'
     assert_equal 130, Checkout::SPECIALS_PRICES[:A], 'Check specials list'
     assert_equal 2, Checkout::SPECIALS_QUANTS[:E], 'Check specials list'
-    assert_equal -30, Checkout::SPECIALS_PRICES[:E], 'Check specials list'
+    assert_equal 50, Checkout::SPECIALS_PRICES[:E], 'Check specials list'
   end
 
   def test_calc_total
@@ -34,5 +34,16 @@ class ClientTest < Minitest::Test
     skus = 'EBACCA'
     assert_equal 210, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
+
+  def test_calc_E_discount_2
+    skus = 'EEB'
+    assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
+  end
+
+  def test_calc_E_discount_2
+    skus = 'EE'
+    assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
+  end
 end
+
 
