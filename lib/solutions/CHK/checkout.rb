@@ -61,9 +61,10 @@ class Checkout
     H: 45,
     V: 90 }
 
-  # BOGOF_QUANTS = {
-  #   E: 2,
-  #
+  # BOGOF = {
+  #   E: { quant: 2, free: :B },
+  #   N: { quant: 3, free: :M },
+  #   R: { quant: 3, free: :Q }
   # }
 
   def checkout(skus)
@@ -128,3 +129,4 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
