@@ -15,7 +15,7 @@ class Checkout
     @order_summary = summarise_order(skus)
     update_order_for_specials(@order_summary, @specials_summary, SPECIALS_PRICES)
     update_order_for_specials(@order_summary, @specials_summary_2, SPECIALS_PRICES_2)
-    sum(@order_summary), STOCK_PRICES)
+    sum(@order_summary, STOCK_PRICES)
 # call update_order_for_specials twice, once with each stock list/price list
     sum(@specials_summary, SPECIALS_PRICES)
     sum(@specials_summary_2, SPECIALS_PRICES_2)
@@ -83,5 +83,6 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
