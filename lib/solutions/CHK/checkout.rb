@@ -31,6 +31,7 @@ class Checkout
   end
 
   def remove_items_on_special(order_summary)
+    bogof_remainder(order_summary)
     order_summary.each do |item, quantity|
       specials_remainder(order_summary, item, quantity)
     end
@@ -44,14 +45,15 @@ class Checkout
     end
   end
 
+  def bogof_remainder(order_summary)
+    if order_summary.key?(:B) && order_summary.key?(:E)
+      order_summary[:B] = (order_summary[:E] / 2) % order_summary[:B]
+    end
+  end
+
   def specials_remainder(order_summary, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
     order_summary[item] = remainder unless remainder.nil?
-    bogof_remainder(order_summary, item, quantity)
-  end
-
-  def bogof_remainder(order_summary, item, quantity)
-    order_summary[:B] = (order_summary[:E] / 2) % order_summary[:B] if order_summary.key?(:B) && order_summary.key?(:E)
   end
 
   def quantity_item(order_summary, item, quantity, price_list)
@@ -59,11 +61,3 @@ class Checkout
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
-
-
-
-
-
-
-
-
