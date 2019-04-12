@@ -55,7 +55,8 @@ p item
 
   def sum(order_summary, price_list)
     order_summary.each do |item, quantity|
-p 'quantity item...'
+p 'item quantity...'
+p order_summary[item]
       @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
 p 'running total...'
 p @running_total
@@ -83,6 +84,7 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
