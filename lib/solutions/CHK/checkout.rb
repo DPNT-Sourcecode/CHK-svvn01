@@ -49,7 +49,8 @@ class Checkout
 
   def calc_remainder(order_summary, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
-p    order_summary[item] = remainder unless remainder.nil?
+    order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
