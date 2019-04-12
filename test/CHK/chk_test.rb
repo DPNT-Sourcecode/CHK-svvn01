@@ -10,6 +10,7 @@ class ClientTest < Minitest::Test
 
   def test_stock_list
     assert_equal 50, Checkout::STOCK_PRICES[:A], 'Check stock list'
+    assert_equal 40, Checkout::STOCK_PRICES[:E], 'Check stock list'
   end
 
   def test_specials_list
@@ -27,3 +28,4 @@ class ClientTest < Minitest::Test
     assert_equal -1, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
 end
+
