@@ -57,7 +57,8 @@ p @running_total
     end
   end
 
-  def add_items_on_special
+  def add_items_on_special(order_summary, item, quantity, price_list)
+    quantity / SPECIALS_QUANTS[item] if price_list == price_list.key?(item)
   end
 
   def specials_remainder(order_summary, item, quantity)
@@ -73,4 +74,5 @@ p remainder
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
 
