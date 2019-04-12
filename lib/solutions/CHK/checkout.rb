@@ -11,6 +11,7 @@ class Checkout
     return -1 if check_skus(skus) == false
     @running_total = 0
     sum(update_order_for_specials(summarise_order(skus)), STOCK_PRICES)
+# call update_order_for_specials twice, once with each stock list/price list
     sum(@specials_summary, SPECIALS_PRICES)
     @running_total
   end
@@ -32,15 +33,15 @@ class Checkout
     order_summary
   end
 
-  def update_order_for_specials(order_summary)
+  def update_order_for_specials(order_summary) #price list arg goes into add_items_on_special
 # here would need to go round twice with both specials lists
     @specials_summary = {}
-    bogof_remainder(order_summary)
+    remove_items_on_bogof(order_summary)
     order_summary.each do |item, quantity|
 p 'item...'
 p item
       add_items_on_special(@specials_summary, item, quantity, SPECIALS_PRICES)
-      specials_remainder(order_summary, item, quantity)
+      remove_items_on_special(order_summary, item, quantity)
     end
     order_summary
   end
@@ -54,7 +55,7 @@ p @running_total
     end
   end
 
-  def bogof_remainder(order_summary)
+  def remove_items_on_bogof(order_summary)
     if order_summary.key?(:B) && order_summary.key?(:E)
       order_summary[:B] -= order_summary[:E] / 2
     end
@@ -67,13 +68,14 @@ p 'specials summary...'
 p specials_summary
   end
 
-  def specials_remainder(order_summary, item, quantity)
+  def remove_items_on_special(order_summary, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
 p 'remainder...'
 p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
