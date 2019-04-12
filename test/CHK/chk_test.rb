@@ -64,4 +64,11 @@ p 'test_calc_F_discount'
     skus = 'FFFFFFF'
     assert_equal 50, Checkout.new.checkout(skus), 'Buy 2 Fs, get one free'
   end
+
+  def test_lots_of_discounts
+p 'test_lots_of_discounts'
+    skus = 'VVVVVQRRRNNN'
+    assert_equal 490, Checkout.new.checkout(skus), 'Lots of random discounts'
+  end
 end
+
