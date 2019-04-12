@@ -3,7 +3,7 @@ class Checkout
 
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
   SPECIALS_QUANTS = { A: 3, B: 2, E: 2 }
-  SPECIALS_PRICES = { A: 130 , B: 45, E: -30 }
+  SPECIALS_PRICES = { A: 130 , B: 45, E: 50 }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -35,7 +35,6 @@ class Checkout
       calc_remainder(order_summary, item, quantity)
     end
     order_summary
-    # is this the right order summary?
   end
 
   def sum(order_summary, price_list)
@@ -51,10 +50,11 @@ class Checkout
   end
 
   def quantity_item(order_summary, item, quantity, price_list)
-   return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES
+   return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES && SPECIALS_PRICES.key?(item)
    return order_summary[item] if price_list == STOCK_PRICES
  end
 end
+
 
 
 
