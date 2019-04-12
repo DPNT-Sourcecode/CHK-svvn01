@@ -32,6 +32,7 @@ class Checkout
 
   def remove_items_on_special(order_summary)
     order_summary.each do |item, quantity|
+      if item == :E
       calc_remainder(order_summary, item, quantity)
     end
     order_summary
@@ -60,3 +61,4 @@ class Checkout
 
 
 end
+
