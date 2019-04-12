@@ -32,7 +32,6 @@ class Checkout
 
   def remove_items_on_special(order_summary)
     order_summary.each do |item, quantity|
-      if item == :E
       calc_remainder(order_summary, item, quantity)
     end
     order_summary
@@ -55,10 +54,9 @@ class Checkout
     return order_summary[item] if price_list == STOCK_PRICES
   end
 
-  def item_in_basket?(item)
-
-  end
-
-
+  # def item_in_basket?(item)
+  #
+  # end
 end
+
 
