@@ -10,19 +10,19 @@ class Checkout
   def checkout(skus)
     return -1 if check_skus(skus) == false
     @running_total = 0
-    @order_summary = summarise_order(skus)
+    order_summary = summarise_order(skus)
     specials_summary = {}
     specials_summary_2 = {}
-    remove_items_on_bogof(@order_summary)
-    update_order_for_specials(@order_summary, specials_summary, SPECIALS_PRICES, SPECIALS_QUANTS)
-    update_order_for_specials(@order_summary, specials_summary_2, SPECIALS_PRICES_2, SPECIALS_QUANTS_2)
-    sum(@order_summary, STOCK_PRICES)
+    remove_items_on_bogof(order_summary)
+    update_order_for_specials(order_summary, specials_summary, SPECIALS_QUANTS)
+    update_order_for_specials(order_summary, specials_summary_2, SPECIALS_QUANTS_2)
+    sum(order_summary, STOCK_PRICES)
     sum(specials_summary, SPECIALS_PRICES)
     sum(specials_summary_2, SPECIALS_PRICES_2)
     @running_total
   end
 
-  # private
+  private
 
   def check_skus(skus)
     skus.each_char do |item_string|
@@ -39,10 +39,8 @@ class Checkout
     order_summary
   end
 
-  def update_order_for_specials(order_summary, specials_summary, price_list, quant_list) # price list arg goes into add_items_on_special
+  def update_order_for_specials(order_summary, specials_summary, quant_list)
     order_summary.each do |item, quantity|
-p 'item...'
-p item
       add_items_on_special(specials_summary, item, quantity, quant_list)
       remove_items_on_special(order_summary, item, quantity, quant_list)
     end
@@ -51,11 +49,7 @@ p item
 
   def sum(order_summary, price_list)
     order_summary.each do |item, quantity|
-p 'item quantity...'
-p order_summary[item]
       @running_total += order_summary[item] * price_list[item]
-p 'running total...'
-p @running_total
     end
   end
 
@@ -68,16 +62,13 @@ p @running_total
   def add_items_on_special(specials_summary, item, quantity, quant_list)
     item_quantity = quantity / quant_list[item] if quant_list.key?(item)
     specials_summary[item] = item_quantity unless item_quantity == 0 || item_quantity.nil?
-p 'specials summary...'
-p specials_summary
   end
 
   def remove_items_on_special(order_summary, item, quantity, quant_list)
     remainder = quantity % quant_list[item] if quant_list.key?(item)
-p 'remainder...'
-p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
