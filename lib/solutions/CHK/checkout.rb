@@ -33,6 +33,7 @@ class Checkout
   end
 
   def update_order_for_specials(order_summary)
+# here would need to go round twice with both specials lists
     @specials_summary = {}
     bogof_remainder(order_summary)
     order_summary.each do |item, quantity|
@@ -67,13 +68,13 @@ p specials_summary
   end
 
   def specials_remainder(order_summary, item, quantity)
-# here would need to go round twice with both specials lists
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
 p 'remainder...'
 p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
