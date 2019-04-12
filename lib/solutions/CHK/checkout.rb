@@ -44,7 +44,6 @@ class Checkout
 
   def update_order_for_specials(order_summary, specials_summary, price_list) # price list arg goes into add_items_on_special
 # here would need to go round twice with both specials lists
-
     order_summary.each do |item, quantity|
 p 'item...'
 p item
@@ -85,6 +84,7 @@ p remainder
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
