@@ -50,13 +50,14 @@ class Checkout
   end
 
   def quantity_item(order_summary, item, quantity, price_list)
-    return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES && SPECIALS_PRICES.key?(item)
+    return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES && price_list.key?(item)
     return order_summary[item] if price_list == STOCK_PRICES
   end
 
-  # def item_in_basket?(item)
-  #
-  # end
+  def item_in_basket?(item)
+
+  end
 end
+
 
 
