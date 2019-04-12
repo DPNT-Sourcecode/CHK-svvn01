@@ -52,10 +52,3 @@ class Checkout
     order_after_specials[item] = remainder unless remainder.nil?
   end
 end
-
-
-
-
-
-
-
