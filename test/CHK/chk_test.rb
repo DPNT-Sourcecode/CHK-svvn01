@@ -58,6 +58,13 @@ p 'test_calc_A_and_E_bogof'
     skus = 'AAAAAAAAAEEEB'
     assert_equal 500, Checkout.new.checkout(skus), 'Calcs all 3 levels of A prices and E bogof'
   end
+
+  def test_calc_F_discount
+p 'test_calc_F_discount'
+    skus = 'FFF'
+    assert_equal 20, Checkout.new.checkout(skus), 'Buy 2 Fs, get one free'
+  end
 end
+
 
 

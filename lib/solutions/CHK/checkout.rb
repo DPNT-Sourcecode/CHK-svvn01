@@ -1,9 +1,9 @@
 # noinspection RubyUnusedLocalVariable
 class Checkout
 
-  STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
-  SPECIALS_QUANTS = { A: 5, B: 2 }
-  SPECIALS_PRICES = { A: 200, B: 45 }
+  STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40, F: 10 }
+  SPECIALS_QUANTS = { A: 5, B: 2, F: 3 }
+  SPECIALS_PRICES = { A: 200, B: 45, F: 20 }
   SPECIALS_QUANTS_2 = { A: 3 }
   SPECIALS_PRICES_2 = { A: 130 }
 
@@ -69,6 +69,7 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
