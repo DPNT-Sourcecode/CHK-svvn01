@@ -4,8 +4,8 @@ class Checkout
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
   SPECIALS_QUANTS = { A: 3, B: 2, E: 2 }
   SPECIALS_PRICES = { A: 130 , B: 45, E: 50 }
-  BOGOF_QUANTS = { B: 1 }
-  BOGOF_FREEBEES = { E: 2 }
+  BOGOF_QUANTS = { E: 2 }
+  BOGOF_FREEBEES = { E: { B: 2 } }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -62,5 +62,6 @@ class Checkout
 
 
 end
+
 
 
