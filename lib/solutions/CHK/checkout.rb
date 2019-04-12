@@ -51,15 +51,11 @@ class Checkout
   end
 
   def quantity_item(order_summary, item, quantity, price_list)
-    if price_list == SPECIALS_PRICES
-      return quantity / SPECIALS_QUANTS[item]
-    elsif price_list == STOCK_PRICES
-      return order_summary[item]
-    end
-   # return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES
-   # return order_summary[item] if price_list == STOCK_PRICES
+   return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES
+   return order_summary[item] if price_list == STOCK_PRICES
  end
 end
+
 
 
 
