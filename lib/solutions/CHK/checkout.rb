@@ -69,7 +69,3 @@ p remainder
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
-
-
-
-
