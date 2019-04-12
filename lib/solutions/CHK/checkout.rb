@@ -40,7 +40,8 @@ class Checkout
 
   def sum(order_summary, price_list)
     order_summary.each do |item, quantity|
-      @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
+      item_quantity = quantity_item(order_summary, item, quantity, price_list)
+      @running_total += item_quantity * price_list[item] if price_list.key?(item)
     end
   end
 
@@ -49,9 +50,10 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 
-  def quantity_item(order_summary, item, quantity)
+  def quantity_item(order_summary, item, quantity, price_list)
    return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES
    return order_summary[item] if price_list == STOCK_PRICES
  end
 end
+
 
