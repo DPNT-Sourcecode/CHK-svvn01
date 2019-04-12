@@ -19,6 +19,7 @@ class ClientTest < Minitest::Test
   end
 
   def test_calc_total
+p 'test_calc_total'
     skus = 'AAAABBBCCD'
     assert_equal 310, Checkout.new.checkout(skus), 'Calcs total for big order'
   end
@@ -29,23 +30,26 @@ class ClientTest < Minitest::Test
   end
 
   def test_calc_E_discount
+p 'test_calc_E_discount'
     skus = 'EBACCA'
     assert_equal 210, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 
   def test_calc_E_discount_2
+p 'test_calc_E_discount_2'
     skus = 'EEB'
     assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 
   def test_calc_E_discount_3
+p 'test_calc_E_discount_3'
     skus = 'EE'
     assert_equal 80, Checkout.new.checkout(skus), 'Calcs discount of free B with 2 Es'
   end
 
   def test_calc_A_discount
+p 'test_calc_A_discount'
     skus = 'AAAAAAAAA'
     assert_equal 380, Checkout.new.checkout(skus), 'Calcs all 3 levels of A prices'
   end
 end
-
