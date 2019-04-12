@@ -54,8 +54,13 @@ class Checkout
    return order_summary[item] if price_list == STOCK_PRICES
   end
 
+  def item_in_basket?(item)
+    
+  end
+
 
 end
+
 
 
 
