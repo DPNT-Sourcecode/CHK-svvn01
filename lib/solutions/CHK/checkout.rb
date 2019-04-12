@@ -4,6 +4,8 @@ class Checkout
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
   SPECIALS_QUANTS = { A: 3, B: 2, E: 2 }
   SPECIALS_PRICES = { A: 130 , B: 45, E: 50 }
+  BOGOF_QUANTS = { E: 2 }
+  BOGOF_FREEBEES = { E: :B }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -49,12 +51,15 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 
+  def bogof(order_summary, item)
+    order_summary[:E] - (order_summary[:B] * 2)
+  end
+
   def quantity_item(order_summary, item, quantity, price_list)
     return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES && price_list.key?(item)
     return order_summary[item] if price_list == STOCK_PRICES
   end
 
-  def item_in_basket?(item)
 
-  end
 end
+
