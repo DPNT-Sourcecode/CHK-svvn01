@@ -69,7 +69,3 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 end
-
-
-
-
