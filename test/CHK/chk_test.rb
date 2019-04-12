@@ -53,5 +53,3 @@ p 'test_calc_total'
 #     assert_equal 380, Checkout.new.checkout(skus), 'Calcs all 3 levels of A prices'
 #   end
 end
-
-
