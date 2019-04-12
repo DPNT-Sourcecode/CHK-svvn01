@@ -32,18 +32,29 @@ class Checkout
   SPECIALS_QUANTS = {
     A: 5,
     B: 2,
-    F: 3 }
+    F: 3,
+    H: 10,
+    K: 2 }
 
   SPECIALS_PRICES = {
     A: 200,
     B: 45,
-    F: 20 }
+    F: 20,
+    H: 80,
+    K: 150 }
 
   SPECIALS_QUANTS_2 = {
-    A: 3 }
-    
+    A: 3,
+    H: 5 }
+
   SPECIALS_PRICES_2 = {
-    A: 130 }
+    A: 130,
+    H: 45 }
+
+  BOGOF_QUANTS = {
+    E: 2,
+
+  }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -92,9 +103,7 @@ class Checkout
   end
 
   def remove_items_on_bogof(order_summary)
-    if order_summary.key?(:B) && order_summary.key?(:E)
-      order_summary[:B] -= order_summary[:E] / 2
-    end
+    order_summary[:B] -= order_summary[:E] / 2 if order_summary.key?(:B) && order_summary.key?(:E)
   end
 
   def add_items_on_special(specials_summary, item, quantity, quant_list)
@@ -107,4 +116,5 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
