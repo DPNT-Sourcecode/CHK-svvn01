@@ -40,12 +40,8 @@ class Checkout
 
   def sum(order_summary, price_list)
     order_summary.each do |item, quantity|
-      add_items(order_summary, item, quantity, price_list)
+      @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
     end
-  end
-
-  def add_items(order_summary, item, quantity, price_list)
-    @running_total += order_summary[item] * price_list[item] if price_list.key?(item)
   end
 
   def calc_remainder(order_summary, item, quantity)
@@ -53,6 +49,7 @@ class Checkout
     order_summary[item] = remainder unless remainder.nil?
   end
 end
+
 
 
 
