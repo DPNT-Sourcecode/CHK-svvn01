@@ -2,8 +2,8 @@
 class Checkout
 
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
-  SPECIALS_QUANTS = { A: 3, B: 2, E: 2 }
-  SPECIALS_PRICES = { A: 130 , B: 45, E: 50 }
+  SPECIALS_QUANTS = { A: 3, B: 2 }
+  SPECIALS_PRICES = { A: 130 , B: 45 }
   BOGOF_QUANTS = { E: 2 }
   BOGOF_FREEBEES = { E: { B: 2 } }
 
@@ -49,19 +49,19 @@ class Checkout
   def specials_remainder(order_summary, item, quantity)
     remainder = quantity % SPECIALS_QUANTS[item] if SPECIALS_PRICES.key?(item)
     order_summary[item] = remainder unless remainder.nil?
+    bogof_remainder(order_summary, item, quantity)
   end
 
   def bogof_remainder(order_summary, item, quantity)
-    order_summary[item] =  - (order_summary[:B] * 2)
+    order_summary[:B] = order_summary[:E] - (order_summary[:B] * 2) if order_summary.key?(:E)
   end
 
   def quantity_item(order_summary, item, quantity, price_list)
     return quantity / SPECIALS_QUANTS[item] if price_list == SPECIALS_PRICES && price_list.key?(item)
     return order_summary[item] if price_list == STOCK_PRICES
   end
-
-
 end
+
 
 
 
