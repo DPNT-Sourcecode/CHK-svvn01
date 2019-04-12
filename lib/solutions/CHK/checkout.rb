@@ -2,8 +2,8 @@
 class Checkout
 
   STOCK_PRICES = { A: 50, B: 30, C: 20, D: 15, E: 40 }
-  SPECIALS_QUANTS = { A: 3, B: 2 }
-  SPECIALS_PRICES = { A: 130 , B: 45 }
+  SPECIALS_QUANTS = { A: 5, A: 3, B: 2 }
+  SPECIALS_PRICES = { A:, 200, A: 130 , B: 45 }
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -47,7 +47,7 @@ class Checkout
 
   def bogof_remainder(order_summary)
     if order_summary.key?(:B) && order_summary.key?(:E)
-      order_summary[:B] = (order_summary[:E] / 2) % order_summary[:B]
+      order_summary[:B] -= order_summary[:E] / 2
     end
   end
 
@@ -61,3 +61,4 @@ class Checkout
     return order_summary[item] if price_list == STOCK_PRICES
   end
 end
+
