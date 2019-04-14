@@ -79,7 +79,7 @@ class Checkout
     @running_total
   end
 
-  private
+  # private
 
   def check_skus(skus)
     skus.each_char do |item_string|
@@ -132,7 +132,7 @@ class Checkout
       group_items += order[item] if order.key?(item)
     end
     groups_quantity = group_items / 3
-    @running_total += groups_quantity * 45
+p    @running_total += groups_quantity * 45
     GROUP.each do |item|
       remove_group_items(order, group_items, item) if order.key?(item)
     end
@@ -149,5 +149,6 @@ p    order[item] = 0 if groups_remainder > order[item] || groups_remainder == 0
 p    groups_remainder -= item_quantity - order[item] if groups_remainder >= 0
   end
 end
+
 
 
