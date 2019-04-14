@@ -140,13 +140,8 @@ class Checkout
     @running_total += groups_quantity * 45
     groups_remainder = group_items % 3
     GROUPS.each do |item|
-      order[item] = groups_remainder
-      # need something here about up to the current number in order and only upto the remainder
+      order[item] -= groups_remainder if groups_remainder > 0
+      groups_remainder -= order[item]
     end
   end
 end
-
-
-
-
-
