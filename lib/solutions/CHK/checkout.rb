@@ -139,18 +139,18 @@ p item
       remove_group_items(order, group_items, item) if order.key?(item)
 p order
     end
-p order
   end
 
   def remove_group_items(order, group_items, item)
     groups_remainder = group_items % 3
     item_quantity = order[item]
     if groups_remainder <= order[item]
-      order[item] = groups_remainder
-      group_remainder = 0
+p      order[item] = groups_remainder
+p      group_remainder = 0
     elsif groups_remainder > order[item]
-      order[item] = 0
-      groups_remainder -= item_quantity - order[item]
-    end 
+p      order[item] = 0
+p      groups_remainder -= item_quantity - order[item]
+    end
   end
 end
+
