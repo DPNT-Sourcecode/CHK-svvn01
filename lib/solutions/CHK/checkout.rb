@@ -150,8 +150,3 @@ p order
     groups_remainder -= item_quantity - order[item] if groups_remainder >= 0
   end
 end
-
-
-
-
-

@@ -95,6 +95,3 @@ p 'test_group_discount_3'
     assert_equal 172, Checkout.new.checkout(skus), 'test group discount where X and Y are charged'
   end
 end
-
-
-
