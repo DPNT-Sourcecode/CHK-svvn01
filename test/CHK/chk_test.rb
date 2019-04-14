@@ -86,7 +86,8 @@ p 'test_group_discount'
   def test_group_discount
 p 'test_group_discount'
     skus = 'XXYZ'
-    assert_equal 63, Checkout.new.checkout(skus), 'test group discount'
+    assert_equal 62, Checkout.new.checkout(skus), 'test group discount'
   end
 end
+
 
