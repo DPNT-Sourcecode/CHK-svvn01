@@ -79,7 +79,7 @@ class Checkout
     @running_total
   end
 
-  # private
+  private
 
   def check_skus(skus)
     skus.each_char do |item_string|
@@ -90,9 +90,7 @@ class Checkout
   def summarise_order(skus)
     order = {}
     items_array = skus.chars.uniq
-    items_array.each do |item|
-      order[item.to_sym] = skus.count(item)
-    end
+    items_array.each { |item| order[item.to_sym] = skus.count(item) }
     order
   end
 
@@ -151,6 +149,7 @@ class Checkout
     end
   end
 end
+
 
 
 
