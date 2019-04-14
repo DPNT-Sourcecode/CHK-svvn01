@@ -147,7 +147,8 @@ p order
     item_quantity = order[item]
     order[item] = groups_remainder if groups_remainder <= order[item]
     order[item] = 0 if groups_remainder > order[item]
-    groups_remainder -= item_quantity - order[item]
+    groups_remainder -= item_quantity - order[item] if groups_remainder >= 0
   end
 end
+
 
