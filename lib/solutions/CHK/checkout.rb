@@ -143,15 +143,18 @@ p order
   end
 
   def remove_group_items(order, group_items, item)
-    if @groups_remainder <= order[item]
+    item_quantity = order[item]
+    remainder = @groups_remainder
+    if remainder <= item_quantity
       @group_remainder = 0
       order[item] = @groups_remainder
 
-    elsif @groups_remainder > order[item]
+    elsif remainder > item_quantity
       @groups_remainder -= order[item]
     end
   end
 end
+
 
 
 
