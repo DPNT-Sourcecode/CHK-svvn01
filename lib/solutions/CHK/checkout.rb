@@ -148,9 +148,10 @@ p order
 p      order[item] = groups_remainder
 p      group_remainder = 0
     elsif groups_remainder > order[item]
-p      order[item] = 0
+p      order[item] = order[item]
 p      groups_remainder -= item_quantity - order[item]
     end
   end
 end
+
 
