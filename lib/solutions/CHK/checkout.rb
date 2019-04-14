@@ -61,6 +61,7 @@ class Checkout
     H: 45,
     V: 90 }
 
+  GROUPS = [:X, :Y, :T, :S, :Z]
   # BOGOF = {
   #   E: { quant: 2, free: :B },
   #   N: { quant: 3, free: :M },
@@ -130,12 +131,16 @@ class Checkout
     order[item] = remainder unless remainder.nil?
   end
 
-  # def update_order_for_groups(order)
-  #   group_items = order[:Z] + order[:S] + order[:T] + order[:Y] + order[:X]
-  #   groups_quantity = group_items / 3
-  #   groups_remainder = group_items % 3
-  #   @running_total += groups_quantity * 20
-  # end
+  def update_order_for_groups(order)
+    group_items = 0
+    GROUPS.each do |item|
+      group_items += order[item] if order.key?(item)
+    end 
+    groups_quantity = group_items / 3
+    groups_remainder = group_items % 3
+    @running_total += groups_quantity * 20
+  end
 end
+
 
 
