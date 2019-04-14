@@ -105,9 +105,7 @@ class Checkout
   end
 
   def sum(order, price_list)
-    order.each do |item, quantity|
-      @running_total += order[item] * price_list[item]
-    end
+    order.each { |item, quantity| @running_total += order[item] * price_list[item] }
   end
 
   def remove_items_on_bogof(order)
@@ -132,7 +130,6 @@ class Checkout
     @running_total += groups_quantity * 45
     @groups_remainder = group_items % 3
     GROUP.each { |item| remove_group_items(order, group_items, item) if order.key?(item) }
-    end
   end
 
   def count_num_of_group_items(order)
@@ -153,8 +150,7 @@ class Checkout
       @groups_remainder -= order[item]
     end
   end
-
-
 end
+
 
 
