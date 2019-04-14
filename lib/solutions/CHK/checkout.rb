@@ -139,12 +139,17 @@ class Checkout
     groups_quantity = group_items / 3
     @running_total += groups_quantity * 45
     groups_remainder = group_items % 3
-    # GROUPS.each do |item|
-    #   item_quantity = order[item]
-    #   order[item] -= groups_remainder if groups_remainder <= order[item]
-    #   order[item] = 0 if groups_remainder > order[item]
-    #   groups_remainder -= item_quantity - order[item]
-    # end
+    GROUPS.each do |item|
+      remove_group_items(order, item) if order.key?(item)
+    end
+  end
+
+  def remove_group_items(order, item)
+    item_quantity = order[item]
+    order[item] -= groups_remainder if groups_remainder <= order[item]
+    order[item] = 0 if groups_remainder > order[item]
+    groups_remainder -= item_quantity - order[item]
   end
 end
+
 
