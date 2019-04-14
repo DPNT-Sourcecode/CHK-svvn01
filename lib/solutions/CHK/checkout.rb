@@ -61,12 +61,7 @@ class Checkout
     H: 45,
     V: 90 }
 
-  GROUPS = [:X, :Y, :T, :S, :Z]
-  # BOGOF = {
-  #   E: { quant: 2, free: :B },
-  #   N: { quant: 3, free: :M },
-  #   R: { quant: 3, free: :Q }
-  # }
+  GROUP = [:X, :Y, :T, :S, :Z]
 
   def checkout(skus)
     return -1 if check_skus(skus) == false
@@ -133,23 +128,24 @@ class Checkout
 
   def update_order_for_groups(order)
     group_items = 0
-    GROUPS.each do |item|
+    GROUP.each do |item|
       group_items += order[item] if order.key?(item)
     end
     groups_quantity = group_items / 3
     @running_total += groups_quantity * 45
-    groups_remainder = group_items % 3
-    GROUPS.each do |item|
-      remove_group_items(order, item) if order.key?(item)
+    GROUP.each do |item|
+      remove_group_items(order, group_items, item) if order.key?(item)
     end
   end
 
-  def remove_group_items(order, item)
+  def remove_group_items(order, group_items, item)
+    groups_remainder = group_items % 3
     item_quantity = order[item]
     order[item] -= groups_remainder if groups_remainder <= order[item]
     order[item] = 0 if groups_remainder > order[item]
     groups_remainder -= item_quantity - order[item]
   end
 end
+
 
 
