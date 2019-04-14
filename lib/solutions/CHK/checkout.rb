@@ -70,13 +70,14 @@ class Checkout
   def checkout(skus)
     return -1 if check_skus(skus) == false
     @running_total = 0
-    order_summary = summarise_order(skus)
+    order = summarise_order(skus)
     specials_summary = {}
     specials_summary_2 = {}
-    remove_items_on_bogof(order_summary)
-    update_order_for_specials(order_summary, specials_summary, SPECIALS_QUANTS)
-    update_order_for_specials(order_summary, specials_summary_2, SPECIALS_QUANTS_2)
-    sum(order_summary, STOCK_PRICES)
+    remove_items_on_bogof(order)
+    update_order_for_group_discount(order)
+    update_order_for_specials(order, specials_summary, SPECIALS_QUANTS)
+    update_order_for_specials(order, specials_summary_2, SPECIALS_QUANTS_2)
+    sum(order, STOCK_PRICES)
     sum(specials_summary, SPECIALS_PRICES)
     sum(specials_summary_2, SPECIALS_PRICES_2)
     @running_total
@@ -91,32 +92,32 @@ class Checkout
   end
 
   def summarise_order(skus)
-    order_summary = {}
+    order = {}
     items_array = skus.chars.uniq
     items_array.each do |item|
-      order_summary[item.to_sym] = skus.count(item)
+      order[item.to_sym] = skus.count(item)
     end
-    order_summary
+    order
   end
 
-  def update_order_for_specials(order_summary, specials_summary, quant_list)
-    order_summary.each do |item, quantity|
+  def update_order_for_specials(order, specials_summary, quant_list)
+    order.each do |item, quantity|
       add_items_on_special(specials_summary, item, quantity, quant_list)
-      remove_items_on_special(order_summary, item, quantity, quant_list)
+      remove_items_on_special(order, item, quantity, quant_list)
     end
-    order_summary
+    order
   end
 
-  def sum(order_summary, price_list)
-    order_summary.each do |item, quantity|
-      @running_total += order_summary[item] * price_list[item]
+  def sum(order, price_list)
+    order.each do |item, quantity|
+      @running_total += order[item] * price_list[item]
     end
   end
 
-  def remove_items_on_bogof(order_summary)
-    order_summary[:B] -= order_summary[:E] / 2 if order_summary.key?(:B) && order_summary.key?(:E)
-    order_summary[:M] -= order_summary[:N] / 3 if order_summary.key?(:M) && order_summary.key?(:N)
-    order_summary[:Q] -= order_summary[:R] / 3 if order_summary.key?(:Q) && order_summary.key?(:R)
+  def remove_items_on_bogof(order)
+    order[:B] -= order[:E] / 2 if order.key?(:B) && order.key?(:E)
+    order[:M] -= order[:N] / 3 if order.key?(:M) && order.key?(:N)
+    order[:Q] -= order[:R] / 3 if order.key?(:Q) && order.key?(:R)
   end
 
   def add_items_on_special(specials_summary, item, quantity, quant_list)
@@ -124,12 +125,17 @@ class Checkout
     specials_summary[item] = item_quantity unless item_quantity == 0 || item_quantity.nil?
   end
 
-  def remove_items_on_special(order_summary, item, quantity, quant_list)
+  def remove_items_on_special(order, item, quantity, quant_list)
     remainder = quantity % quant_list[item] if quant_list.key?(item)
-    order_summary[item] = remainder unless remainder.nil?
+    order[item] = remainder unless remainder.nil?
   end
 
-  def update_order_for_group_discount(order_summary, item, quantity, quant_list)
-    remove_items_on_special(order_summary, item, quantity, quant_list)
+  def update_order_for_group_discount(order)
+    group_items = order[:Z] + order[:S] + order[:T] + order[:Y] + order[:X]
+    groups_quantity = group_items / 3
+    groups_remainder = group_items % 3
+    @running_total += groups_quantity * 20
+
   end
 end
+
