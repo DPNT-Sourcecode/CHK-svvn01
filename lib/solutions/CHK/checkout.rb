@@ -75,7 +75,7 @@ class Checkout
     specials_summary = {}
     specials_summary_2 = {}
     remove_items_on_bogof(order)
-    # update_order_for_groups(order)
+    update_order_for_groups(order)
     update_order_for_specials(order, specials_summary, SPECIALS_QUANTS)
     update_order_for_specials(order, specials_summary_2, SPECIALS_QUANTS_2)
     sum(order, STOCK_PRICES)
@@ -135,12 +135,14 @@ class Checkout
     group_items = 0
     GROUPS.each do |item|
       group_items += order[item] if order.key?(item)
-    end 
+    end
     groups_quantity = group_items / 3
+    @running_total += groups_quantity * 45
     groups_remainder = group_items % 3
-    @running_total += groups_quantity * 20
+
   end
 end
+
 
 
 
