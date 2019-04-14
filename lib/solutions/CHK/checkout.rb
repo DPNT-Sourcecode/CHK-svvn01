@@ -127,16 +127,25 @@ class Checkout
   end
 
   def update_order_for_groups(order)
-    group_items = 0
-    GROUP.each do |item|
-      group_items += order[item] if order.key?(item)
-    end
-    groups_quantity = group_items / 3
+    group_items = count_num_of_group_items(order)
+    groups_quantity = count_num_of_groups(group_items)
     @running_total += groups_quantity * 45
     @groups_remainder = group_items % 3
     GROUP.each do |item|
       remove_group_items(order, group_items,item) if order.key?(item)
     end
+  end
+
+  def count_num_of_group_items(order)
+    group_items = 0
+    GROUP.each do |item|
+      group_items += order[item] if order.key?(item)
+    end
+    group_items
+  end
+
+  def count_num_of_groups(group_items)
+    group_items / 3
   end
 
   def remove_group_items(order, group_items, item)
@@ -147,4 +156,7 @@ class Checkout
       @groups_remainder -= order[item]
     end
   end
+
+
 end
+
