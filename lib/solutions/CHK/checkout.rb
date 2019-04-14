@@ -131,16 +131,13 @@ class Checkout
     groups_quantity = count_num_of_groups(group_items)
     @running_total += groups_quantity * 45
     @groups_remainder = group_items % 3
-    GROUP.each do |item|
-      remove_group_items(order, group_items,item) if order.key?(item)
+    GROUP.each { |item| remove_group_items(order, group_items, item) if order.key?(item) }
     end
   end
 
   def count_num_of_group_items(order)
     group_items = 0
-    GROUP.each do |item|
-      group_items += order[item] if order.key?(item)
-    end
+    GROUP.each { |item| group_items += order[item] if order.key?(item) }
     group_items
   end
 
@@ -159,4 +156,5 @@ class Checkout
 
 
 end
+
 
